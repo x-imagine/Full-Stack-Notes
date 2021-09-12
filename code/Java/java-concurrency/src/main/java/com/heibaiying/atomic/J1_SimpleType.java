@@ -18,7 +18,6 @@ public class J1_SimpleType {
 	private static AtomicReference<Integer> k = new AtomicReference<>(0);
 
 	static class Task implements Runnable {
-
 		private CountDownLatch latch;
 
 		Task(CountDownLatch latch) {

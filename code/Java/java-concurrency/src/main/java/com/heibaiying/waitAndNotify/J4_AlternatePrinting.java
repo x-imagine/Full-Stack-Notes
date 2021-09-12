@@ -8,7 +8,7 @@ public class J4_AlternatePrinting {
 	private static final Object object = new Object();
 	private volatile static boolean flag = false;
 	private static int i = 0;
-	private static int threshold = 1000000;
+	private static int threshold = 100;
 
 	public static void main(String[] args) {
 		new Thread(() -> {
@@ -28,6 +28,7 @@ public class J4_AlternatePrinting {
 				}
 			}
 		}).start();
+
 		new Thread(() -> {
 			synchronized (object) {
 				while (i <= threshold) {

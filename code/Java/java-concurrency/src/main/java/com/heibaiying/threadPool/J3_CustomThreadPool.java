@@ -26,7 +26,11 @@ public class J3_CustomThreadPool {
 	public static void main(String[] args) throws InterruptedException {
 
 		// 自定义线程池
-		ExecutorService executorService = new ThreadPoolExecutor(10, 20, 0L, TimeUnit.MILLISECONDS,
+		ExecutorService executorService = new ThreadPoolExecutor(
+			10,
+			20,
+			0L,
+			TimeUnit.MILLISECONDS,
 			new LinkedBlockingQueue<>(),
 			r -> {
 				Thread thread = new Thread(r);

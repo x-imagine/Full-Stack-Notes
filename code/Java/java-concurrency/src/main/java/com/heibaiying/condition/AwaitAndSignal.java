@@ -18,6 +18,7 @@ public class AwaitAndSignal {
 				lock.lock();
 				String threadName = Thread.currentThread().getName();
 				System.out.println(threadName + "线程等待通知...");
+				Thread.sleep(10000);
 				condition.await();
 				System.out.println(threadName + "线程后续操作");
 			} catch (InterruptedException e) {
@@ -36,6 +37,7 @@ public class AwaitAndSignal {
 		lock.lock();
 		System.out.println("主线程唤醒");
 		condition.signal();
+		Thread.sleep(20000);
 		lock.unlock();
 	}
 }

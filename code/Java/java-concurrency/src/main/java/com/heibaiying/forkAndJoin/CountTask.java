@@ -11,7 +11,7 @@ public class CountTask extends RecursiveTask<Long> {
 
 	private Long start;
 	private Long end;
-	private static long hold = 50L;
+	private static long hold = 2;
 
 	CountTask(Long start, Long end) {
 		this.start = start;
@@ -54,9 +54,11 @@ public class CountTask extends RecursiveTask<Long> {
 
 	public static void main(String[] args) throws ExecutionException, InterruptedException {
 		ForkJoinPool forkJoinPool = new ForkJoinPool(100);
-		CountTask task = new CountTask(0L, 10000L);
+		long start = 0l;
+		long end = 5l;
+		CountTask task = new CountTask(start, end);
 		ForkJoinTask<Long> result = forkJoinPool.submit(task);
-		Long aLong = result.get();
+		Long aLong = result.get() + end;
 		System.out.println("结果为" + aLong);
 	}
 }

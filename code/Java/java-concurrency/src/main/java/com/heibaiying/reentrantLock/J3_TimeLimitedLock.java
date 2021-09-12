@@ -10,7 +10,6 @@ public class J3_TimeLimitedLock {
 	static class IncreaseTask implements Runnable {
 		@Override
 		public void run() {
-
 			try {
 				String threadName = Thread.currentThread().getName();
 				// 指定锁定时间

@@ -26,7 +26,11 @@ public class J4_ExtendedThreadPool {
 	public static void main(String[] args) throws InterruptedException {
 
 		// 自定义线程
-		ExecutorService executorService = new ThreadPoolExecutor(10, 20, 0L, TimeUnit.MILLISECONDS,
+		ExecutorService executorService = new ThreadPoolExecutor(
+			10,
+			20,
+			0L,
+			TimeUnit.MILLISECONDS,
 			new LinkedBlockingQueue<>()) {
 			@Override
 			protected void beforeExecute(Thread t, Runnable r) {

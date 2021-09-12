@@ -20,6 +20,7 @@ public class J2_KeepObjectLocked {
 				}
 			}
 		}).start();
+
 		new Thread(() -> {
 			synchronized (object) {
 				System.out.println("线程2");

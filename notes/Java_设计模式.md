@@ -2286,6 +2286,7 @@ public class HouseMediator extends Mediator {
 定义用户类，它可以是买方也可以是卖方，它们都是中介的客户：
 
 ```java
+@Data
 public class Person {
 
     private String name;

@@ -86,6 +86,7 @@ public class ReadWriteLock {
 			Thread thread = new Thread(new Write(reentrantLock, String.valueOf(j)));
 			thread.start();
 		}
+		//读锁不共享
 		for (int j = 0; j < 18; j++) {
 			Thread thread = new Thread(new Read(reentrantLock));
 			thread.start();

@@ -19,6 +19,7 @@ public class J5_NotifyAll {
 				}
 			}
 		}).start();
+
 		new Thread(() -> {
 			synchronized (object) {
 				try {
@@ -30,6 +31,7 @@ public class J5_NotifyAll {
 				}
 			}
 		}).start();
+
 		new Thread(() -> {
 			synchronized (object) {
 				System.out.println("线程3开始操作");
