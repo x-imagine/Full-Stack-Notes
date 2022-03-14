@@ -31,8 +31,8 @@
 
 ## :globe_with_meridians: 网络基础
 
-1. [计算机网络模型](notes/计算机网络/计算机网络.md)
-2. [HTTPS 协议详解](notes/计算机网络/HTTPS.md)
+1. [计算机网络模型](notes/05-计算机网络/计算机网络.md)
+2. [HTTPS 协议详解](notes/05-计算机网络/HTTPS.md)
 3. [使用 Wireshark 分析 HTTPS 握手过程](notes/WireShark_HTTPS.md)
 
 
@@ -129,7 +129,7 @@
 
 ## :bullettrain_side: 微服务与分布式
 
-1. [CAP 理论 和 BASE 理论](notes/Java综合/CAP理论和BASE理论.md)
+1. [CAP 理论 和 BASE 理论](notes/01-Java综合/06-微服务与分布式/CAP理论和BASE理论.md)
 
 
 
@@ -137,12 +137,12 @@
 
 ##  :hammer_and_wrench: 常用软件安装
 
-1. [Redis 单机环境安装](notes/installation/Redis单机环境搭建.md)
-2. [RabbitMQ 单机环境安装](notes/installation/RabbitMQ单机环境搭建.md)
-3. [Nginx 单机环境安装](notes/installation/Nginx编译方式安装.md)
-4. [MySQL 单机环境安装](notes/installation/MySQL单机环境搭建.md)
-5. [MongoDB 单机环境安装](notes/installation/MongoDB单机环境搭建.md)
-6. [ElasticSearch + Kibana 单机环境安装](notes/installation/ElasticSearch+Kibana单机环境搭建.md)
+1. [Redis 单机环境安装](notes/07-installation/Redis单机环境搭建.md)
+2. [RabbitMQ 单机环境安装](notes/07-installation/RabbitMQ单机环境搭建.md)
+3. [Nginx 单机环境安装](notes/07-installation/Nginx编译方式安装.md)
+4. [MySQL 单机环境安装](notes/07-installation/MySQL单机环境搭建.md)
+5. [MongoDB 单机环境安装](notes/07-installation/MongoDB单机环境搭建.md)
+6. [ElasticSearch + Kibana 单机环境安装](notes/07-installation/ElasticSearch+Kibana单机环境搭建.md)
 
 <br>
 

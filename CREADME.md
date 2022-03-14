@@ -54,11 +54,11 @@
 
 ## :globe_with_meridians: 网络基础
 
-1. [计算机网络模型](notes/计算机网络/计算机网络.md)
+1. [计算机网络模型](notes/05-计算机网络/计算机网络.md)
 
    四层、五层、七层计算机网络模型、信道复用、PPP 协议、ARP 协议、划分子网与构成超网、TCP 三次握手与四次挥手
 
-3. [HTTPS 协议详解](notes/计算机网络/HTTPS.md)
+3. [HTTPS 协议详解](notes/05-计算机网络/HTTPS.md)
 
 3. [使用 Wireshark 分析 HTTPS 握手过程](notes/WireShark_HTTPS.md)
 
@@ -95,11 +95,11 @@
 
    基于二进制日志的复制、基于 GTID 的复制、半同步复制、高可用架构 MMM 和 MHA 
 
-4. [MySQL 高可用架构之 PXC 集群](notes/中间件/Mysql/MySQL_PXC集群.md)
+4. [MySQL 高可用架构之 PXC 集群](notes/02-中间件/Mysql/MySQL_PXC集群.md)
 
-5. [MyCat 读写分离与分库分表](notes/中间件/Mysql/MySQL_Mycat中间件.md)
+5. [MyCat 读写分离与分库分表](notes/02-中间件/Mysql/MySQL_Mycat中间件.md)
 
-6. [MySQL 查询性能分析之 Explain](notes/中间件/Mysql/MySQL_EXPLAIN.md)
+6. [MySQL 查询性能分析之 Explain](notes/02-中间件/Mysql/MySQL_EXPLAIN.md)
 
 ### Redis
 
@@ -203,7 +203,7 @@ TODO
 
 ## :bullettrain_side: 微服务与分布式
 
-1. [CAP 理论 和 BASE 理论](notes/Java综合/CAP理论和BASE理论.md)
+1. [CAP 理论 和 BASE 理论](notes/01-Java综合/06-微服务与分布式/CAP理论和BASE理论.md)
 
 
 
@@ -211,12 +211,12 @@ TODO
 
 ##  :hammer_and_wrench: 常用软件安装
 
-1. [Redis 单机环境安装](notes/installation/Redis单机环境搭建.md)
-2. [RabbitMQ 单机环境安装](notes/installation/RabbitMQ单机环境搭建.md)
-3. [Nginx 单机环境安装](notes/installation/Nginx编译方式安装.md)
-4. [MySQL 单机环境安装](notes/installation/MySQL单机环境搭建.md)
-5. [MongoDB 单机环境安装](notes/installation/MongoDB单机环境搭建.md)
-6. [ElasticSearch + Kibana 单机环境安装](notes/installation/ElasticSearch+Kibana单机环境搭建.md)
+1. [Redis 单机环境安装](notes/07-installation/Redis单机环境搭建.md)
+2. [RabbitMQ 单机环境安装](notes/07-installation/RabbitMQ单机环境搭建.md)
+3. [Nginx 单机环境安装](notes/07-installation/Nginx编译方式安装.md)
+4. [MySQL 单机环境安装](notes/07-installation/MySQL单机环境搭建.md)
+5. [MongoDB 单机环境安装](notes/07-installation/MongoDB单机环境搭建.md)
+6. [ElasticSearch + Kibana 单机环境安装](notes/07-installation/ElasticSearch+Kibana单机环境搭建.md)
 
 <br>
 
