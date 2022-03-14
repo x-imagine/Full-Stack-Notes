@@ -31,8 +31,8 @@
 
 ## :globe_with_meridians: 网络基础
 
-1. [计算机网络模型](notes/计算机网络.md)
-2. [HTTPS 协议详解](notes/HTTPS.md)
+1. [计算机网络模型](notes/计算机网络/计算机网络.md)
+2. [HTTPS 协议详解](notes/计算机网络/HTTPS.md)
 3. [使用 Wireshark 分析 HTTPS 握手过程](notes/WireShark_HTTPS.md)
 
 
@@ -129,7 +129,7 @@
 
 ## :bullettrain_side: 微服务与分布式
 
-1. [CAP 理论 和 BASE 理论](notes/CAP理论和BASE理论.md)
+1. [CAP 理论 和 BASE 理论](notes/Java综合/CAP理论和BASE理论.md)
 
 
 
