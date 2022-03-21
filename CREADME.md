@@ -95,11 +95,11 @@
 
    基于二进制日志的复制、基于 GTID 的复制、半同步复制、高可用架构 MMM 和 MHA 
 
-4. [MySQL 高可用架构之 PXC 集群](notes/02-中间件/Mysql/MySQL_PXC集群.md)
+4. [MySQL 高可用架构之 PXC 集群](notes/02-中间件/MySQL/01%20MySQL总结/集群/MySQL_PXC集群.md)
 
-5. [MyCat 读写分离与分库分表](notes/02-中间件/Mysql/MySQL_Mycat中间件.md)
+5. [MyCat 读写分离与分库分表](notes/02-中间件/MySQL/01%20MySQL总结/集群/MySQL_Mycat中间件.md)
 
-6. [MySQL 查询性能分析之 Explain](notes/02-中间件/Mysql/MySQL_EXPLAIN.md)
+6. [MySQL 查询性能分析之 Explain](notes/02-中间件/MySQL/03%20SQL调优及使用经验/04%20MySQL_EXPLAIN.md)
 
 ### Redis
 
