@@ -38,7 +38,7 @@ Redis 5 支持以下多种数据类型：
 | 获取值                 | hget key field                                               | hget user:1 name                                             |
 | 删除 field             | hdel key field [field ...]                                   |                                                              |
 | 计算 field 个数        | hlen key                                                     |                                                              |
-| 批量设置或获取         | hmget key field [field]<br/>hmset key field value [field value...] | hmset user:1 name mike age 12 city tianjin<br/>hmget user:1 name city |
+| 批量设置或获取         | hmget key field [field]<br/>hmset key field value [field value...] | hmget user:1 name city<br/> hmset user:1 name mike age 12 city tianjin|
 | 判断 field 是否存在    | hexists key field                                            |                                                              |
 | 获取所有 field         | hkeys key                                                    |                                                              |
 | 获取所有 value         | hvals key                                                    |                                                              |
