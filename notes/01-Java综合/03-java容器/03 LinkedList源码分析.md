@@ -24,7 +24,7 @@ List list=Collections.synchronizedList(new LinkedList(...));
 ## <font face="楷体" id="2">内部结构分析</font>
 **如下图所示：**
 
-![LinkedList内部结构](images/linkedlist/LinkedList内部结构.png)
+![LinkedList内部结构](images/linkedlist/LinkedList内部结构.png)    
 看完了图之后，我们再看LinkedList类中的一个<font color="red">**内部私有类Node**</font>就很好理解了：
 
 ```java

@@ -1,11 +1,4 @@
 <!-- GFM-TOC -->
-* [一、线程状态转换](#一线程状态转换)
-    * [新建（New）](#新建new)
-    * [可运行（Runnable）](#可运行runnable)
-    * [阻塞（Blocked）](#阻塞blocked)
-    * [无限期等待（Waiting）](#无限期等待waiting)
-    * [限期等待（Timed Waiting）](#限期等待timed-waiting)
-    * [死亡（Terminated）](#死亡terminated)
 * [二、使用线程](#二使用线程)
     * [实现 Runnable 接口](#实现-runnable-接口)
     * [实现 Callable 接口](#实现-callable-接口)
@@ -57,59 +50,6 @@
 * [十三、多线程开发良好的实践](#十三多线程开发良好的实践)
 * [参考资料](#参考资料)
 <!-- GFM-TOC -->
-
-
-# 一、线程状态转换
-
-<div align="center"> <img src="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/adfb427d-3b21-40d7-a142-757f4ed73079.png" width="600px"> </div><br>
-
-## 新建（New）
-
-创建后尚未启动。
-
-## 可运行（Runnable）
-
-可能正在运行，也可能正在等待 CPU 时间片。
-
-包含了操作系统线程状态中的 Running 和 Ready。
-
-## 阻塞（Blocked）
-
-等待获取一个排它锁，如果其线程释放了锁就会结束此状态。
-
-## 无限期等待（Waiting）
-
-等待其它线程显式地唤醒，否则不会被分配 CPU 时间片。
-
-| 进入方法 | 退出方法 |
-| --- | --- |
-| 没有设置 Timeout 参数的 Object.wait() 方法 | Object.notify() / Object.notifyAll() |
-| 没有设置 Timeout 参数的 Thread.join() 方法 | 被调用的线程执行完毕 |
-| LockSupport.park() 方法 | LockSupport.unpark(Thread) |
-
-## 限期等待（Timed Waiting）
-
-无需等待其它线程显式地唤醒，在一定时间之后会被系统自动唤醒。
-
-调用 Thread.sleep() 方法使线程进入限期等待状态时，常常用“使一个线程睡眠”进行描述。
-
-调用 Object.wait() 方法使线程进入限期等待或者无限期等待时，常常用“挂起一个线程”进行描述。
-
-睡眠和挂起是用来描述行为，而阻塞和等待用来描述状态。
-
-阻塞和等待的区别在于，阻塞是被动的，它是在等待获取一个排它锁。而等待是主动的，通过调用 Thread.sleep() 和 Object.wait() 等方法进入。
-
-| 进入方法 | 退出方法 |
-| --- | --- |
-| Thread.sleep() 方法 | 时间结束 |
-| 设置了 Timeout 参数的 Object.wait() 方法 | 时间结束 / Object.notify() / Object.notifyAll()  |
-| 设置了 Timeout 参数的 Thread.join() 方法 | 时间结束 / 被调用的线程执行完毕 |
-| LockSupport.parkNanos() 方法 | LockSupport.unpark(Thread) |
-| LockSupport.parkUntil() 方法 | LockSupport.unpark(Thread) |
-
-## 死亡（Terminated）
-
-可以是线程结束任务之后自己结束，或者产生了异常而结束。
 
 # 二、使用线程
 
