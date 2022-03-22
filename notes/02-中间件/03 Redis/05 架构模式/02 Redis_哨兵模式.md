@@ -70,7 +70,7 @@ Redis Sentinel 是一个特殊的 Redis 节点。在哨兵模式创建时，需�
 
 ### 2.2 故障转移原理
 
-每个 Sentinel 都会定时进行心跳检查，当发现主节点出现心跳检测超时的情况时，此时认为该主节点已经不可用，这种判定称为主观下线。之后该 Sentinel 节点会通过 `sentinel ismaster-down-by-addr` 命令向其他 Sentinel 节点询问对主节点的判断， 当 quorum 个 Sentinel 节点都认为该节点故障时，则执行客观下线，即认为该节点已经不可用。这也同时解释了为什么必须需要一组 Sentinel 节点，因为单个 Sentinel 节点很容易对故障状态做出误判。
+每个 Sentinel 都会定时进行心跳检查，当发现主节点出现心跳检测超时的情况时，此时认为该主节点已经不可用，这种判定称为主观下线。之后该 Sentinel 节点会通过 `SENTINEL is-master-down-by-addr <masterip> <masterport> <sentinel.current_epoch> *` 命令向其他 Sentinel 节点询问对主节点的判断， 当 quorum 个 Sentinel 节点都认为该节点故障时，则执行客观下线，即认为该节点已经不可用。这也同时解释了为什么必须需要一组 Sentinel 节点，因为单个 Sentinel 节点很容易对故障状态做出误判。
 
 > 这里 quorum 的值是我们在哨兵模式搭建时指定的，后文会有说明，通常为 `Sentinel节点总数/2+1`，即半数以上节点做出主观下线判断就可以执行客观下线。
 
