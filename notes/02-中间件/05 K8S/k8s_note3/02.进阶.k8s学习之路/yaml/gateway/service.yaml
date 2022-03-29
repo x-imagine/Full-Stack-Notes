@@ -1,0 +1,26 @@
+{
+  "kind": "Service",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "gateway-proxy",
+    "namespace": "default",
+    "labels": {
+      "app": "gateway-proxy"
+    }
+  },
+  "spec": {
+    "ports": [
+      {
+        "protocol": "TCP",
+        "port": 8200,
+        "targetPort": 8200
+      }
+    ],
+    "selector": {
+      "app": "gateway-proxy"
+    },
+    "type": "LoadBalancer",
+    "sessionAffinity": "None",
+    "externalTrafficPolicy": "Cluster"
+  }
+}
