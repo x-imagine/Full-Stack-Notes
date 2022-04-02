@@ -1,0 +1,56 @@
+{
+  "kind": "Deployment",
+  "apiVersion": "extensions/v1beta1",
+  "metadata": {
+    "name": "provider-service",
+    "namespace": "default",
+    "labels": {
+      "app": "provider-service"
+    }
+  },
+  "spec": {
+    "replicas": 1,
+    "selector": {
+      "matchLabels": {
+        "app": "provider-service"
+      }
+    },
+    "template": {
+      "metadata": {
+        "name": "provider-service",
+        "labels": {
+          "app": "provider-service"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "name": "provider-service",
+            "image": "cfmicserver1.node/business/provider-service:1.0.0-SNAPSHOT",
+            "resources": {},
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File",
+            "imagePullPolicy": "Always",
+            "securityContext": {
+              "privileged": false
+            }
+          }
+        ],
+        "restartPolicy": "Always",
+        "terminationGracePeriodSeconds": 30,
+        "dnsPolicy": "ClusterFirst",
+        "securityContext": {},
+        "schedulerName": "default-scheduler"
+      }
+    },
+    "strategy": {
+      "type": "RollingUpdate",
+      "rollingUpdate": {
+        "maxUnavailable": "25%",
+        "maxSurge": "25%"
+      }
+    },
+    "revisionHistoryLimit": 10,
+    "progressDeadlineSeconds": 600
+  }
+}

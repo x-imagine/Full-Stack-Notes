@@ -1,0 +1,25 @@
+{
+  "kind": "Service",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "provider-service",
+    "namespace": "default",
+    "labels": {
+      "app": "provider-service"
+    }
+  },
+  "spec": {
+    "ports": [
+      {
+        "protocol": "TCP",
+        "port": 8000,
+        "targetPort": 8000
+      }
+    ],
+    "selector": {
+      "app": "provider-service"
+    },
+    "type": "ClusterIP",
+    "sessionAffinity": "None"
+  }
+}

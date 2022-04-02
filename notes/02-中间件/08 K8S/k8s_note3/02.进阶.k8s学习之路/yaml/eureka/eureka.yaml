@@ -1,0 +1,55 @@
+apiVersion: apps/v1beta2
+kind: StatefulSet
+metadata:
+  name: eureka
+  namespace: default
+spec:
+  serviceName: "eureka"
+  replicas: 3
+  selector:
+    matchLabels:
+      app: eureka
+  template:
+    metadata:
+      labels:
+        app: eureka
+    spec:
+      containers:
+      - name: eureka
+        image: harbor.server64.cn/mic-service/mic-eureka-server:1.0.10
+        ports:
+        - containerPort: 10201
+        env:
+          # Due to camelcase issues with "defaultZone" and "preferIpAddress", _JAVA_OPTIONS is used here
+        - name: _JAVA_OPTIONS
+          value: -Deureka.instance.preferIpAddress=false -Deureka.client.serviceUrl.defaultZone=http://eureka-2.eureka.default.svc.cluster.local:10201/eureka/,http://eureka-0.eureka.default.svc.cluster.local:10201/eureka/,http://eureka-1.eureka.default.svc.cluster.local:10201/eureka/
+        - name: EUREKA_CLIENT_REGISTERWITHEUREKA
+          value: "true"
+        - name: EUREKA_CLIENT_FETCHREGISTRY
+          value: "true"
+          # In the docker image, this is set to localhost. Otherwise, we could leave this empty.
+          # The hostnames must match with the the eureka serviceUrls, otherwise the replicas are reported as unavailable in the eureka dashboard
+        - name: EUREKA_INSTANCE_HOSTNAME
+          value: ${spring.cloud.client.hostname}
+          # For the other (stateless) services, this should probably be set to true, since their pods have no DNS-resolvable hostnames
+        - name: EUREKA_INSTANCE_PREFERIPADDRESS
+          value: "false"
+        - name: app.port
+          value: "10201"
+          # No need to start the pods in order. We just need the stable network identity
+  podManagementPolicy: "Parallel"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eureka
+spec:
+  selector:
+    app: eureka
+  ports:
+    - port: 10201
+      targetPort: 10201
+  externalIPs:
+    - 192.168.33.130
+    - 192.168.33.131
+    - 192.168.33.132

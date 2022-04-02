@@ -1,0 +1,25 @@
+{
+  "kind": "Service",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "consumer-service",
+    "namespace": "default",
+    "labels": {
+      "app": "consumer-service"
+    }
+  },
+  "spec": {
+    "ports": [
+      {
+        "protocol": "TCP",
+        "port": 8100,
+        "targetPort": 8100
+      }
+    ],
+    "selector": {
+      "app": "consumer-service"
+    },
+    "type": "ClusterIP",
+    "sessionAffinity": "None"
+  }
+}

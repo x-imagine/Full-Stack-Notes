@@ -203,7 +203,7 @@ TODO
 
 ## :bullettrain_side: 微服务与分布式
 
-1. [CAP 理论 和 BASE 理论](notes/01-Java综合/06-微服务与分布式/CAP理论和BASE理论.md)
+1. [CAP 理论 和 BASE 理论](notes/01-Java综合/06-微服务与分布式/01%20CAP理论和BASE理论.md)
 
 
 
