@@ -31,8 +31,8 @@
 
 ## :globe_with_meridians: 网络基础
 
-1. [计算机网络模型](notes/05-计算机网络/计算机网络.md)
-2. [HTTPS 协议详解](notes/05-计算机网络/HTTPS.md)
+1. [计算机网络模型](notes/05-计算机网络/计算机网络/计算机网络.md)
+2. [HTTPS 协议详解](notes/05-计算机网络/02%20HTTPS.md)
 3. [使用 Wireshark 分析 HTTPS 握手过程](notes/WireShark_HTTPS.md)
 
 

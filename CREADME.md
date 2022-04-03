@@ -54,11 +54,11 @@
 
 ## :globe_with_meridians: 网络基础
 
-1. [计算机网络模型](notes/05-计算机网络/计算机网络.md)
+1. [计算机网络模型](notes/05-计算机网络/计算机网络/计算机网络.md)
 
    四层、五层、七层计算机网络模型、信道复用、PPP 协议、ARP 协议、划分子网与构成超网、TCP 三次握手与四次挥手
 
-3. [HTTPS 协议详解](notes/05-计算机网络/HTTPS.md)
+3. [HTTPS 协议详解](notes/05-计算机网络/02%20HTTPS.md)
 
 3. [使用 Wireshark 分析 HTTPS 握手过程](notes/WireShark_HTTPS.md)
 
