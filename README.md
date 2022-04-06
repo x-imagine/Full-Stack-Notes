@@ -15,15 +15,15 @@
 
 ## :coffee: JAVA
 
-1. [Java 反射与注解](notes/Java_反射与注解.md)
-2. [Java 并发编程](notes/Java_并发编程.md)
-3. [Java NIO 核心组件详解](notes/Java_NIO.md)
-4. [Java 函数式编程](notes/Java_函数式编程.md)
-5. [Java 设计模式](notes/Java_设计模式.md)
-6. [Java 虚拟机](notes/Java_虚拟机.md)
-7. [JVM 性能监控之命令行工具](notes/JVM_性能监控之命令行工具.md)
-8. [JVM 性能监控之可视化工具](notes/JVM_性能监控之可视化工具.md)
-9. [Tomcat 架构解析](notes/Tomcat_架构解析.md)
+1. [Java 反射与注解](java-notes/Java_反射与注解.md)
+2. [Java 并发编程](java-notes/Java_并发编程.md)
+3. [Java NIO 核心组件详解](java-notes/Java_NIO.md)
+4. [Java 函数式编程](java-notes/Java_函数式编程.md)
+5. [Java 设计模式](java-notes/Java_设计模式.md)
+6. [Java 虚拟机](java-notes/Java_虚拟机.md)
+7. [JVM 性能监控之命令行工具](java-notes/JVM_性能监控之命令行工具.md)
+8. [JVM 性能监控之可视化工具](java-notes/JVM_性能监控之可视化工具.md)
+9. [Tomcat 架构解析](java-notes/Tomcat_架构解析.md)
 10. Java 集合类源码解析
    
 
@@ -31,17 +31,17 @@
 
 ## :globe_with_meridians: 网络基础
 
-1. [计算机网络模型](notes/05-计算机网络/计算机网络/计算机网络.md)
-2. [HTTPS 协议详解](notes/05-计算机网络/02%20HTTPS.md)
-3. [使用 Wireshark 分析 HTTPS 握手过程](notes/WireShark_HTTPS.md)
+1. [计算机网络模型](java-notes/05-计算机网络/计算机网络/计算机网络.md)
+2. [HTTPS 协议详解](java-notes/05-计算机网络/02%20HTTPS.md)
+3. [使用 Wireshark 分析 HTTPS 握手过程](java-notes/WireShark_HTTPS.md)
 
 
  <br/>  
 
 ## :computer: 前端基础
 
-1. [JavaScript 基础](notes/JavaScript_基础.md)
-2. [ECMAScript 6.0 基础](notes/ES6_基础.md)
+1. [JavaScript 基础](java-notes/JavaScript_基础.md)
+2. [ECMAScript 6.0 基础](java-notes/ES6_基础.md)
 3. JavaScript 设计模式
 
 <br/>
@@ -50,37 +50,37 @@
 
 ### MySQL
 
-1. [MySQL 核心概念](notes/MySQL_基础.md)
-2. [MySQL 备份详解](notes/MySQL_备份.md)
-3. [MySQL 复制详解](notes/MySQL_复制.md)
-4. [MySQL 高可用架构之 PXC 集群](notes/MySQL_PXC集群.md)
-5. [MyCat 读写分离与分库分表](notes/MySQL_Mycat中间件.md)
-6. [MySQL 查询性能分析之 Explain](notes/MySQL_EXPLAIN.md)
+1. [MySQL 核心概念](java-notes/MySQL_基础.md)
+2. [MySQL 备份详解](java-notes/MySQL_备份.md)
+3. [MySQL 复制详解](java-notes/MySQL_复制.md)
+4. [MySQL 高可用架构之 PXC 集群](java-notes/MySQL_PXC集群.md)
+5. [MyCat 读写分离与分库分表](java-notes/MySQL_Mycat中间件.md)
+6. [MySQL 查询性能分析之 Explain](java-notes/MySQL_EXPLAIN.md)
 
 ### Redis
 
-1. [Redis 基本数据类型和常用命令](notes/Redis_数据类型和常用命令.md)
-2. [Redis AOF 和 RDB 持久化策略原理](notes/Redis_持久化.md)
-3. [Redis 哨兵模式](notes/Redis_哨兵模式.md)
-4. [Redis 集群模式](notes/Redis_集群模式.md)
-5. [Redis 分布式锁原理](notes/Redis_分布式锁原理.md)
+1. [Redis 基本数据类型和常用命令](java-notes/Redis_数据类型和常用命令.md)
+2. [Redis AOF 和 RDB 持久化策略原理](java-notes/Redis_持久化.md)
+3. [Redis 哨兵模式](java-notes/Redis_哨兵模式.md)
+4. [Redis 集群模式](java-notes/Redis_集群模式.md)
+5. [Redis 分布式锁原理](java-notes/Redis_分布式锁原理.md)
 
 
 ### MongoDB
 
-1. [MongoDB 基础](notes/MongoDB_基础.md)
-2. [MongoDB 索引](notes/MongoDB_索引.md)
-3. [MongoDB 聚合](notes/MongoDB_聚合.md)
-4. [MongoDB 复制](notes/MongoDB_复制.md)
-5. [MongoDB 分片](notes/MongoDB_分片.md)
+1. [MongoDB 基础](java-notes/MongoDB_基础.md)
+2. [MongoDB 索引](java-notes/MongoDB_索引.md)
+3. [MongoDB 聚合](java-notes/MongoDB_聚合.md)
+4. [MongoDB 复制](java-notes/MongoDB_复制.md)
+5. [MongoDB 分片](java-notes/MongoDB_分片.md)
 
 <br/>
 
 ## :whale: 系统与容器
 
-1. [Linux 常用 Shell 命令](notes/Linux_常用Shell命令.md)
-2. [Sehll 脚本编程基础](notes/Shell_基础.md)
-3. [Docker 基础](notes/Docker_基础.md)
+1. [Linux 常用 Shell 命令](java-notes/Linux_常用Shell命令.md)
+2. [Sehll 脚本编程基础](java-notes/Shell_基础.md)
+3. [Docker 基础](java-notes/Docker_基础.md)
 
 <br/>
 
@@ -89,13 +89,13 @@
 
 ### RabbitMQ
 
-1. [RabbitMQ 核心概念](notes/RabbitMQ_基础.md)
-2. [RabbitMQ 客户端开发](notes/RabbitMQ_客户端开发.md)
-3. [HAProxy + KeepAlived 搭建 RabbitMQ 高可用集群](notes/RabbitMQ_高可用集群架构.md)
+1. [RabbitMQ 核心概念](java-notes/RabbitMQ_基础.md)
+2. [RabbitMQ 客户端开发](java-notes/RabbitMQ_客户端开发.md)
+3. [HAProxy + KeepAlived 搭建 RabbitMQ 高可用集群](java-notes/RabbitMQ_高可用集群架构.md)
 
 ### Nginx
 
-1. [Nginx 基础之静态网站部署，负载均衡，动静分离](notes/Nginx_基础.md)
+1. [Nginx 基础之静态网站部署，负载均衡，动静分离](java-notes/Nginx_基础.md)
 2. HTTP 模块详解
 
 
@@ -115,7 +115,7 @@
 3. [ZooKeeper 常用 Shell 命令](https://github.com/heibaiying/BigData-Notes/blob/master/notes/Zookeeper常用Shell命令.md)
 4. [ZooKeeper Java 客户端](https://github.com/heibaiying/BigData-Notes/blob/master/notes/Zookeeper_Java客户端Curator.md)
 5. [ZooKeeper  ACL 权限控制](https://github.com/heibaiying/BigData-Notes/blob/master/notes/Zookeeper_ACL权限控制.md)
-6. [ZooKeeper 分布式锁原理](notes/ZooKeeper_分布式锁原理.md)
+6. [ZooKeeper 分布式锁原理](java-notes/ZooKeeper_分布式锁原理.md)
 
 ## ElasticSearch
 
@@ -129,7 +129,7 @@
 
 ## :bullettrain_side: 微服务与分布式
 
-1. [CAP 理论 和 BASE 理论](notes/01-Java综合/06-微服务与分布式/01%20CAP理论和BASE理论.md)
+1. [CAP 理论 和 BASE 理论](java-notes/01-Java综合/06-微服务与分布式/01%20CAP理论和BASE理论.md)
 
 
 
@@ -137,12 +137,12 @@
 
 ##  :hammer_and_wrench: 常用软件安装
 
-1. [Redis 单机环境安装](notes/07-installation/Redis单机环境搭建.md)
-2. [RabbitMQ 单机环境安装](notes/07-installation/RabbitMQ单机环境搭建.md)
-3. [Nginx 单机环境安装](notes/07-installation/Nginx编译方式安装.md)
-4. [MySQL 单机环境安装](notes/07-installation/MySQL单机环境搭建.md)
-5. [MongoDB 单机环境安装](notes/07-installation/MongoDB单机环境搭建.md)
-6. [ElasticSearch + Kibana 单机环境安装](notes/07-installation/ElasticSearch+Kibana单机环境搭建.md)
+1. [Redis 单机环境安装](java-notes/07-installation/Redis单机环境搭建.md)
+2. [RabbitMQ 单机环境安装](java-notes/07-installation/RabbitMQ单机环境搭建.md)
+3. [Nginx 单机环境安装](java-notes/07-installation/Nginx编译方式安装.md)
+4. [MySQL 单机环境安装](java-notes/07-installation/MySQL单机环境搭建.md)
+5. [MongoDB 单机环境安装](java-notes/07-installation/MongoDB单机环境搭建.md)
+6. [ElasticSearch + Kibana 单机环境安装](java-notes/07-installation/ElasticSearch+Kibana单机环境搭建.md)
 
 <br>
 
