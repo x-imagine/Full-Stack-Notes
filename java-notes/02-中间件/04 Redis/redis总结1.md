@@ -82,7 +82,7 @@ Memcached 是分布式缓存最开始兴起的那会，比较常用的。后来�
 
 作为暖男一号，我给大家画了一个草图。
 
-![正常缓存处理流程](images/redis-all/缓存的处理流程.png)
+![正常缓存处理流程](../../../pictures/redis/redis-all/缓存的处理流程.png)
 
 简单来说就是:
 
@@ -97,7 +97,7 @@ _简单，来说使用缓存主要是为了提升用户体验以及应对更多�
 
 下面我们主要从“高性能”和“高并发”这两点来看待这个问题。
 
-![](./images/redis-all/使用缓存之后.png)
+![](../../../pictures/redis/redis-all/使用缓存之后.png)
 
 **高性能** ：
 
@@ -121,7 +121,7 @@ _简单，来说使用缓存主要是为了提升用户体验以及应对更多�
 
 你可以自己本机安装 redis 或者通过 redis 官网提供的[在线 redis 环境](https://try.redis.io/)。
 
-![try-redis](./images/redis-all/try-redis.png)
+![try-redis](../../../pictures/redis/redis-all/try-redis.png)
 
 #### 6.1. string
 
@@ -220,7 +220,7 @@ OK
 
 我专门花了一个图方便小伙伴们来理解：
 
-![redis list](./images/redis-all/redis-list.png)
+![redis list](../../../pictures/redis/redis-all/redis-list.png)
 
 **通过 `lrange` 查看对应下标范围的列表元素：**
 
@@ -446,7 +446,7 @@ Redis 通过**IO 多路复用程序** 来监听来自客户端的大量连接（
 - 文件事件分派器（将 socket 关联到相应的事件处理器）
 - 事件处理器（连接应答处理器、命令请求处理器、命令回复处理器）
 
-![](images/redis-all/redis事件处理器.png)
+![](../../../pictures/redis/redis-all/redis事件处理器.png)
 
 <p style="text-align:right; font-size:14px; color:gray">《Redis设计与实现：12章》</p>
 
@@ -454,7 +454,7 @@ Redis 通过**IO 多路复用程序** 来监听来自客户端的大量连接（
 
 虽然说 Redis 是单线程模型，但是，实际上，**Redis 在 4.0 之后的版本中就已经加入了对多线程的支持。**
 
-![redis4.0 more thread](images/redis-all/redis4.0-more-thread.png)
+![redis4.0 more thread](../../../pictures/redis/redis-all/redis4.0-more-thread.png)
 
 不过，Redis 4.0 增加的多线程主要是针对一些大键值对的删除操作的命令，使用这些命令就会使用主处理之外的其他线程来“异步处理”。
 
@@ -520,7 +520,7 @@ OK
 
 Redis 通过一个叫做过期字典（可以看作是 hash 表）来保存数据过期的时间。过期字典的键指向 Redis 数据库中的某个 key(键)，过期字典的值是一个 long long 类型的整数，这个整数保存了 key 所指向的数据库键的过期时间（毫秒精度的 UNIX 时间戳）。
 
-![redis过期字典](images/redis-all/redis过期时间.png)
+![redis过期字典](../../../pictures/redis/redis-all/redis过期时间.png)
 
 过期字典是存储在 redisDb 这个结构里的：
 
@@ -676,7 +676,7 @@ ERR EXEC without MULTI
 
 Redis 官网相关介绍 [https://redis.io/topics/transactions](https://redis.io/topics/transactions) 如下：
 
-![redis事务](images/redis-all/redis事务.png)
+![redis事务](../../../pictures/redis/redis-all/redis事务.png)
 
 但是，Redis 的事务和我们平时理解的关系型数据库的事务不同。我们知道事务具有四大特性： **1. 原子性**，**2. 隔离性**，**3. 持久性**，**4. 一致性**。
 
@@ -689,7 +689,7 @@ Redis 官网相关介绍 [https://redis.io/topics/transactions](https://redis.io
 
 Redis 官网也解释了自己为啥不支持回滚。简单来说就是 Redis 开发者们觉得没必要支持回滚，这样更简单便捷并且性能更好。Redis 开发者觉得即使命令执行错误也应该在开发过程中就被发现而不是生产过程中。
 
-![redis roll back](images/redis-all/redis-rollBack.png)
+![redis roll back](../../../pictures/redis/redis-all/redis-rollBack.png)
 
 你可以将 Redis 中的事务就理解为 ：**Redis 事务提供了一种将多个命令请求打包的功能。然后，再按顺序执行打包的所有命令，并且不会被中途打断。**
 
@@ -708,7 +708,7 @@ Redis 官网也解释了自己为啥不支持回滚。简单来说就是 Redis �
 
 如下图所示，用户的请求最终都要跑到数据库中查询一遍。
 
-![缓存穿透情况](./images/redis-all/缓存穿透情况.png)
+![缓存穿透情况](../../../pictures/redis/redis-all/缓存穿透情况.png)
 
 #### 16.3. 有哪些解决办法？
 
@@ -751,7 +751,7 @@ public Object getObjectInclNullById(Integer id) {
 
 加入布隆过滤器之后的缓存处理流程图如下。
 
-![image](images/redis-all/加入布隆过滤器后的缓存处理流程.png)
+![image](../../../pictures/redis/redis-all/加入布隆过滤器后的缓存处理流程.png)
 
 但是，需要注意的是布隆过滤器可能会存在误判的情况。总结来说就是： **布隆过滤器说某个元素存在，小概率会误判。布隆过滤器说某个元素不在，那么这个元素一定不在。**
 

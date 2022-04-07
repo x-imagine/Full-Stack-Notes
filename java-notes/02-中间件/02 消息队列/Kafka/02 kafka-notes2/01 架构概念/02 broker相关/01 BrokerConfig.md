@@ -2,11 +2,11 @@
 ## Broker Configs
 ### broker.id
 重要，集群内不可重复的int值，未设置则生成一个不重复的id   
-![](pic/03Configuration/brokerid.png)
+![](../../../../../../../pictures/kafka/03Configuration/brokerid.png)
 
 ### log.dirs
 必设参数，日志目录，kafka把所有的消息都存在磁盘中，此参数指定存储位置，默认tmp下   
-![](pic/03Configuration/log.dirs.png)
+![](../../../../../../../pictures/kafka/03Configuration/log.dirs.png)
 
 ### log.dir
 同log.dirs，优先级低于log.dirs
@@ -21,7 +21,7 @@
 zookeeper.connect=127.0.0.1:3000,127.0.0.1:3001,127.0.0.1:3002/kafka
 ```
 chroot路径可使同一zookeeper被多套Kafka应用，服用zookeeper资源，不指定默认使用zookeeper根路径。
-![](pic/03Configuration/zookeeper.png)
+![](../../../../../../../pictures/kafka/03Configuration/zookeeper.png)
 
 ### advertised.host.name
 废弃，仅用于advertised.listeners，listeners未设置情况的替代参数
@@ -34,7 +34,7 @@ chroot路径可使同一zookeeper被多套Kafka应用，服用zookeeper资源，
 
 ### auto.create.topics.enable
 重要，默认true，当生产者生产消息时，若topic不存在是否创建，默认为true   
-![](pic/03Configuration/auto.create.topics.enable.png)
+![](../../../../../../../pictures/kafka/03Configuration/auto.create.topics.enable.png)
 
 ### background.threads
 重要，用于各种后台处理的线程数量，int，大于1

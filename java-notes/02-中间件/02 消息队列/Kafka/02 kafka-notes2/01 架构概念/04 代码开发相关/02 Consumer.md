@@ -2,7 +2,7 @@
 ## 一、客户端开发
 ### 1.代码示例
 - Producer客户端配置信息
-```
+```java
     public static Properties initConfig(String deserializerKey, String deserializerValue) {
         Properties properties = new Properties();
         properties.setProperty(org.apache.kafka.clients.consumer.ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, HOST_PORT);
@@ -22,7 +22,7 @@
 4. group.id：consumer隶属消息组名称，默认""，设置为null会抛异常
 
 - 消费者消费消息——所有分区
-```
+```java
     public static void consumerAutoCommit() {
         // 定义配置信息
         Properties properties = CsmConfig.initConfig(StringDeserializer.class.getName(), StringDeserializer.class.getName());
@@ -38,8 +38,8 @@
     }
 ```
 代码消费了topic的所有分区的消息   
-![](pic/05Consumer/producer_send.png)
-![](pic/05Consumer/consumer_all_partitions.png)   
+![](../../../../../../../pictures/kafka/05Consumer/producer_send.png)
+![](../../../../../../../pictures/kafka/05Consumer/consumer_all_partitions.png)   
 代码说明：   
 1. kafkaConsumer.subscribe()消息订阅可以订阅多个topic，采用直接罗列或正则表达式
 2. 多次执行subscribe()，仅最后一次生效，而非对多个主题生效
@@ -47,7 +47,7 @@
 4. Duration为java8版本提供的一个表达时间的对象，可以提供如毫秒、秒、分钟、天等不同单位的时间表达
 
 - 消费者消费消息——指定分区
-```
+```java
     public static void consumerAssignPartition() {
         TopicPartition topicPartition1 = new TopicPartition(TEST_TOPIC_NAME_MUTI_PARTITION, 0);
         TopicPartition topicPartition2 = new TopicPartition(TEST_TOPIC_NAME_MUTI_PARTITION, 1);
@@ -66,13 +66,13 @@
     }
 ```
 代码消费了topic的指定分区的消息   
-![](pic/05Consumer/consumer_assign_partitions.png)
+![](../../../../../../../pictures/kafka/05Consumer/consumer_assign_partitions.png)
 代码说明：
 1. TopicPartition类用来创建Topic + Partition的实例，该类只有两个属性，用于指定topic下的分区
 2. kafkaConsumer.assign()方法不仅指定主题，还指定分区
 
 - 在指定主题中按分区处理消息
-```
+```java
     public static void consumerBypartition() {
         Properties properties = CsmConfig.initConfig(StringDeserializer.class.getName(), StringDeserializer.class.getName());
         KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<>(properties);
@@ -89,12 +89,12 @@
         }
     }
 ```
-![](pic/05Consumer/producer_for_by_partition.png)
-![](pic/05Consumer/consumer_for_by_partition.png)
+![](../../../../../../../pictures/kafka/05Consumer/producer_for_by_partition.png)
+![](../../../../../../../pictures/kafka/05Consumer/consumer_for_by_partition.png)
 在有必要的情况下可以使用多线程来消费不同partition的消息
 
 - Consumer获取主题中的分区信息
-```
+```java
     public static void getPartitionInfo() {
         Properties properties = CsmConfig.initConfig(StringDeserializer.class.getName(), StringDeserializer.class.getName());
         KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<>(properties);
@@ -105,9 +105,9 @@
         }
     }
 ```
-![](pic/05Consumer/getPartitionInfo.png)   
+![](../../../../../../../pictures/kafka/05Consumer/getPartitionInfo.png)   
 除主题分区信息外，PartitionInfo以下副本信息可以进行精细化的处理   
-```
+```java
     // leader副本所在节点
     private final Node leader;
     // AR
@@ -118,7 +118,7 @@
     private final Node[] offlineReplicas;
 ```
 - 消费者退订消息
-```
+```java
     public static void consumerUnsubscribe() {
         // 定义配置信息
         Properties properties = CsmConfig.initConfig(StringDeserializer.class.getName(), StringDeserializer.class.getName());
@@ -133,7 +133,7 @@
     }
 ```
 unsubscribe和订阅一个空的效果等同，在未做任何订阅的情况下，拉去消息，会产生如下异常   
-![](pic/05Consumer/unsubscribe_exception.png)
+![](../../../../../../../pictures/kafka/05Consumer/unsubscribe_exception.png)
 
 ### 2.subscribe & assign
 - subscribe方法订阅的主题，多个消费者的情况下，具备rebalance功能，根据消费者数量动态调整消费者与分区关系
@@ -151,7 +151,7 @@ unsubscribe和订阅一个空的效果等同，在未做任何订阅的情况下
 设置为一天，程序也不会真阻塞一天，当拿到fetch.max.bytes参数设置的最大消息数后，也会返回      
 4. 消费记录对象ConsumerRecord
 poll拉取返回为ConsumerRecords，其中包含多个ConsumerRecord，主要属性如下
-```
+```java
 public class ConsumerRecord<K, V> {
     // 主题、分区、偏移量
     private final String topic;
@@ -181,10 +181,10 @@ public class ConsumerRecord<K, V> {
 - offset处理不当可能导致重复消费，即消费一半，未提交同步，程序宕掉，重新拉起，刚刚消费掉的消息重复消费；消息丢失，即未消费的消息已经提交同步，但宕掉，重新拉起，遗失了宕前未消费部分
 - 提交模式：自动（系统默认）、手动（enable.auto.commit设置为false）
 
-![](pic/05Consumer/offset_commit.png)
+![](../../../../../../../pictures/kafka/05Consumer/offset_commit.png)
 
 ### 6.consumer手动提交
-```
+```java
     public static void consumerNotAutoCommit() {
         Properties properties = CsmConfig.initConfig(StringDeserializer.class.getName(), StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
@@ -204,7 +204,7 @@ public class ConsumerRecord<K, V> {
 - 手动提交又分为两种处理方式：同步方式、异步方式
 - 同步方式：kafkaConsumer.commitSync()，提交时阻塞消费者业务处理，等待过程会耗费一定性能   
 另有重载方法，可提供细化到分区、偏移量的同步处理   
-```
+```java
     public void commitSync(Map<TopicPartition, OffsetAndMetadata> offsets) {
         this.commitSync(offsets, Duration.ofMillis((long)this.defaultApiTimeoutMs));
     }
@@ -212,7 +212,7 @@ public class ConsumerRecord<K, V> {
 注：同步方法在执行前，业务代码出现异常，将导致偏移量未提交，重新运行产生重复消费问题
 - 异步方式：kafkaConsumer.commitAsync()，提交的同时可能同步拉取消息，性能有一定增强
 另有重载方法，可提供异步的回调处理、偏移量的处理   
-```
+```java
     public void commitAsync(OffsetCommitCallback callback) 
     public void commitAsync(Map<TopicPartition, OffsetAndMetadata> offsets, OffsetCommitCallback callback)
 ```
@@ -224,7 +224,7 @@ public class ConsumerRecord<K, V> {
 ### 7.控制消费——暂停、恢复、跳出
 可以在某种条件下，自行控制对某主题、分区的消费。   
 - 暂停消费
-```
+```java
     private static final AtomicBoolean isRunning = new AtomicBoolean(true);
     .....
     public static void consumerPause() {
@@ -242,11 +242,11 @@ public class ConsumerRecord<K, V> {
         }
     }
 ```
-![](pic/05Consumer/pause_partition.png)
+![](../../../../../../../pictures/kafka/05Consumer/pause_partition.png)
 如上，分区0、2、3、1陆续被暂停消费，暂停后的分区就不再有消费产生。  
 注：pause()方法需要在首次poll到partition后才能对该partition进行暂停，否则报 No current assignment for partition
 - 恢复消费
-``` java
+```java
     // 暂停消费
     kafkaConsumer.pause(Sets.newHashSet(new TopicPartition(pollRecord.topic(), pollRecord.partition())));
     // 恢复
@@ -255,7 +255,7 @@ public class ConsumerRecord<K, V> {
 resume() 方法将暂停的分区恢复消费
 - 退出消费while   
 方式一：通过isRunning.get()方式
-```
+```java
     private static final AtomicBoolean isRunning = new AtomicBoolean(true);
     public static void consumerBreakWhile() {
         // 测试用，超过10次拉取空集合，则退出循环终止消费
@@ -274,10 +274,10 @@ resume() 方法将暂停的分区恢复消费
         }
     }
 ```
-![](pic/05Consumer/break_while.png)
+![](../../../../../../../pictures/kafka/05Consumer/break_while.png)
 无生产者产生消息的情况下，10次空poll，通过isRunning.set(false)退出大循环   
 方式二：通过wakeup
-```
+```java
     public static void consumerBreakWhile() {
         // 测试用，超过10次拉取空集合，则退出循环终止消费
         int emptyTimes = 10;
@@ -296,7 +296,7 @@ resume() 方法将暂停的分区恢复消费
         }
     }
 ```
-![](pic/05Consumer/wakeup.png)
+![](../../../../../../../pictures/kafka/05Consumer/wakeup.png)
 注：wakeup()可以从其他线程安全调用；wakeup后将产生WakeupException，需要catch，但不用对该异常处理
 
 ### 8.指定消费偏移量（ offset ）
@@ -312,11 +312,11 @@ resume() 方法将暂停的分区恢复消费
 - earliest ：从所分配分区的起始位置开始消费，起始位置为当前kafka中尚存在消息的低水位位置
 - none ：配置为none，则不取起始，不取末尾，抛出异常：NoOffsetForPartitionException
 - 为设置上述之一，则抛出ConfigException
-![](pic/05Consumer/auto_offset_reset.png)
+![](../../../../../../../pictures/kafka/05Consumer/auto_offset_reset.png)
 当采用默认情况下，consumer新创建后，先获取到分配的分区，并将offset初始指定到分区的最末尾
 #### 8.2 seek指定offset
 auto.offset.reset仅作用在无法获取offset情况，业务上需要灵活指定offset的场景需要使用seek()方法
-```
+```java
     public static void consumerSeek() {
         Properties properties = CsmConfig.initConfig(StringDeserializer.class.getName(), StringDeserializer.class.getName());
         KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<>(properties);
@@ -339,7 +339,7 @@ auto.offset.reset仅作用在无法获取offset情况，业务上需要灵活指
     }
 ```
 执行结果如下   
-![](pic/05Consumer/seek.png)   
+![](../../../../../../../pictures/kafka/05Consumer/seek.png)   
 可以看到消费者客户端启动后，各partition的offset均指在最末端，紧接着seek将offset指向0位置，然后消费从0开始   
 seek方法用途较广，可用于kafka消息批量处理的原子性操作，如从offset=3000开始拉取100条数据，处理到51条后异常，则下次可以重新从3000拉取，避免重复消费   
 ### 9.Rebalance（再平衡）
@@ -350,7 +350,7 @@ seek方法用途较广，可用于kafka消息批量处理的原子性操作，�
 - 应避免计划外、不必要的再平衡发生。
 #### 9.2ConsumerRebalanceListener（再均衡监听器）
 Consumer的subscribe方法支持传入再平衡监听   
-```
+```java
     // 无再平衡监听的订阅
     public void subscribe(Collection<String> topics) {
         this.subscribe((Collection)topics, new NoOpConsumerRebalanceListener());
@@ -361,7 +361,7 @@ Consumer的subscribe方法支持传入再平衡监听
     }
 ```
 ConsumerRebalanceListener接口包括
-```
+```java
     // 消费者停止读取消息后，进行再平衡前执行
     void onPartitionsRevoked(Collection<TopicPartition> var1);
     // 消费者重新分配分区后，重新获取消息前执行
@@ -376,7 +376,7 @@ ConsumerRebalanceListener接口包括
 - 配置项：interceptor.classes
 - 拦截器异常不向上传递
 - 多个拦截器可建立拦截链
-```
+```java
     // poll方法返回之前
     ConsumerRecords<K, V> onConsume(ConsumerRecords<K, V> var1);
     // 提交offset之后

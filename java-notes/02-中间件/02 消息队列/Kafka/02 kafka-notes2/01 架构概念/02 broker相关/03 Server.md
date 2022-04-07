@@ -43,14 +43,14 @@ Kafka自定义了一组二进制TCP协议，每种类型的协议都有对应的
 当有任务为2ms启动时，则该任务储存在2ms对应的TimerTaskList中，当currentTime到达2ms，TimerTaskList下的任务执行   
 执行到2ms时，若又新增一个8ms后要执行的任务，则在2ms基础上+8ms，及存入10ms时间格对应的TimerTaskList中   
 若此时新增一个350ms后要执行的任务呢？就需要引入多级轮结构的情形了
-![](pic/09Server/time_wheel_single.png)
+![](../../../../../../../pictures/kafka/09Server/time_wheel_single.png)
 #### 多轮
 - 多级时间轮结构类似：时间轮分多层级，每个层级都偶tickMs、wheelSize，每上升一个层级，tickMs是其下级的时间跨度之和，wheelSize相等
 - 多级时间轮量级渐进：如最低级tickMs=1ms，wheelSize=20，总跨度20ms，则其上级tickMs=20ms，wheelSize=20，总跨度400ms，以此类推，第三层级为8000ms，第四层级为160000ms
 - 根据总时间跨度绝对时间轮升级：当一层时间轮的度量，无法承载预期任务计划的时间长度时，如单轮时间机制描述的wheelSize=20ms的轮遇到350ms的任务情况，则任务升级到上一级时间轮的17个时间片（350/20），如果另有任务大于400ms，则再升级时间轮，以此类推
 - 根据流逝后剩余时间决定时间轮降级：如350ms的任务在二级时间轮，当时间流逝至340ms时，剩余10ms的时间在当前时间轮无法精确描述，则降级至低级时间轮，在低级时间轮经理10个时间片后，开始执行任务   
-![](pic/09Server/time_wheel_muti.png)
-![](pic/09Server/Timing-Wheel.png)
+![](../../../../../../../pictures/kafka/09Server/time_wheel_muti.png)
+![](../../../../../../../pictures/kafka/09Server/Timing-Wheel.png)
 #### 扩展
 - 时间轮在创建时，以系统当前时间为第一层时间轮的起始时间
 - 通过TimeSYSTEM.hiResClockMs获取精确时间，System.currentTimeMillis()在某些操作系统下不能组合精确到毫秒级

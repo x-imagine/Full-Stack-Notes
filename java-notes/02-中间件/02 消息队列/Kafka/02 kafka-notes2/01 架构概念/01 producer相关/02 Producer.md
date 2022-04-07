@@ -2,7 +2,7 @@
 ## 一、客户端开发
 ### 1.代码示例
 - Producer客户端配置信息
-```
+```java
     public static Properties initConfig(String serializerKey, String serializerValue) {
         Properties properties = new Properties();
         properties.put(org.apache.kafka.clients.producer.ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, Cons.host_port);
@@ -25,7 +25,7 @@
 6. 序列化、反序列化的class全名也较易出错，可以将"org.apache.kafka.common.serialization.StringSerializer"替换为XxxClass.class.getName()
 
 - 生产者发送消息——异步发送（async）
-```
+```java
     /**
      * producer异步发送
      */
@@ -42,11 +42,11 @@
 ```
 - 消费情况   
 消费消息顺序不是0-9，原因是该topic中有4个partition，多partition无法保证顺序。   
-![](pic/04Producer/consumer.png)
-![](pic/04Producer/partitions.png)
+![](../../../../../../../pictures/kafka/04Producer/consumer.png)
+![](../../../../../../../pictures/kafka/04Producer/partitions.png)
 
 - 生产者发送消息——异步回调发送
-```
+```java
     /**
      * producer异步发送（优化）
      */
@@ -71,7 +71,7 @@
     }
 ```
 - 生产者发送消息——异步阻塞发送   
-```
+```java
     /**
      * producer异步阻塞发送
      */
@@ -98,7 +98,7 @@
 
 ### 2.消息对象——ProducerRecord
 对象包含多个属性：
-```
+```java
 public class ProducerRecord<K, V> {
     private final String topic;
     private final Integer partition;
@@ -143,7 +143,7 @@ int partition(String var1, Object var2, byte[] var3, Object var4, byte[] var5, C
 - 作用：发送前做前期准备工作，如修改消息；发送前的统计数据收集
 - 时机：拦截器->序列化->计算分区
 - 拦截器接口：
-```
+```java
 public interface ProducerInterceptor<K, V> extends Configurable {
     // 发送前调用
     ProducerRecord<K, V> onSend(ProducerRecord<K, V> var1);
@@ -155,7 +155,7 @@ public interface ProducerInterceptor<K, V> extends Configurable {
 - 异常的处理：拦截器的几个方法在发生异常时，不抛出异常（一种合理的不传递异常的情况）
 ```
 - 使用：为消息体增加前缀   
-```
+```java
 public class PrefixProducerInterceptor implements ProducerInterceptor<String, String>{
     @Override
     public ProducerRecord onSend(ProducerRecord<String, String> producerRecord) {
@@ -167,10 +167,10 @@ public class PrefixProducerInterceptor implements ProducerInterceptor<String, St
 
 ```
 
-![](pic/04Producer/interceptor.png)
+![](../../../../../../../pictures/kafka/04Producer/interceptor.png)
 
 ## 二、Producer原理
-![](pic/04Producer/framework.png)
+![](../../../../../../../pictures/kafka/04Producer/framework.png)
 Producer由两个主要线程构成：主线程、sender线程，前者组织消息，后者发送消息。   
 ### 1.主线程
 - 处理流   

@@ -15,8 +15,8 @@
 - LogSegment还可能存在 .deleted .cleaned .swap临时文件，以及 .snapshot .txnindex等
 - 创建主题时，如果log目录指定了多个，那么log文件会在分区最少的那个目录创建本次任务的文件
 
-![](pic/08Log/log-format.png)
-![](pic/08Log/offset_message_unique_mark_in_partition.png)
+![](../../../../../../../pictures/kafka/08Log/log-format.png)
+![](../../../../../../../pictures/kafka/08Log/offset_message_unique_mark_in_partition.png)
 
 ## 二、日志格式
 日志结构的设计
@@ -24,7 +24,7 @@
 - 缺少字段，在最初的Kafka消息版本中没有timestamp字段，对内影响了日志保存、切分策略，对外影响消息审计、端到端延迟等功能的扩展，虽然可以在消息体内部添加一个时间戳，但是解析变长的消息体会带来额外的开销，而存储在消息体（参考下图中的value字段）前面可以通过指针偏量获取其值而容易解析，进而减少了开销
 
 早期版本——v0   
-![](pic/08Log/v0.png) 
+![](../../../../../../../pictures/kafka/08Log/v0.png) 
 
 其中，RECORD为消息格式，每个消息都对应一组offset和message size，即日志头LOG_OVERHEAD，RECORD+LOG_OVERHEAD构成一条消息，多条消息构成消息集合（Message Set）   
 - crc32（4B）：crc32校验值。校验范围为magic至value之间
@@ -36,7 +36,7 @@
 - value：消息体。可以为空
 
 早期版本——v1   
-![](pic/08Log/v1.png) 
+![](../../../../../../../pictures/kafka/08Log/v1.png) 
 - magic（1B）：消息格式版本号，v0版本的magic值为1
 - RECORD新增了一个timestamp
 - attributes字段中的低3位和v0版本的一样，还是表示压缩类型，第4个bit：0表示timestamp类型为CreateTime，而1表示timestamp类型为LogAppendTime
@@ -47,7 +47,7 @@
 - ZigZag编码：一种锯齿形的方式来回标识正负整数，使带符号整数映射为无符号整数，绝对值较小的负数仍有较小的Varints编码值，比如-1编码为1,1编码为2，-2编码为3
 - 消息集改称为Record Batch，替代Message Set
 - 消息格式Record的关键字段大量采用了Varints，这样可根据具体值来确定需要几个字节
-![](pic/08Log/v2.png) 
+![](../../../../../../../pictures/kafka/08Log/v2.png) 
 结构说明    
 - first offset：表示当前RecordBatch的起始位移
 - length：计算partition leader epoch到headers之间的长度
@@ -65,10 +65,10 @@
 ## 三、消息压缩
 压缩率：把100MB的文件压缩后是90MB，压缩率为90/100*100%=90%，压缩空间越大越好，压缩率越小越好   
 通常对较大的文件，压缩效果会更好，kafka消息通常比较小而数量多，所以kafka在压缩时非逐条压缩，而是将消息集进行压缩   
-![](pic/08Log/compress_message1.png) 
+![](../../../../../../../pictures/kafka/08Log/compress_message1.png) 
 
 将左侧原始消息的多条，封装为一个大消息的value中，原始消息成为内部消息，消息集合成为外层消息，kafka压缩外层消息   
-![](pic/08Log/compress_message2.png)
+![](../../../../../../../pictures/kafka/08Log/compress_message2.png)
 
 内外层消息的Offset为内层消息最大值，内层从0开始offset，如外层1030对应内层的offset=5   
 
@@ -90,7 +90,7 @@
 - 日志分段已被切分，则索引文件亦不会再写入新的索引项，其被设定为只读，同时Kafka将索引文件剪切成实际数据大小
 ### 4.偏移量索引
 - 索引结构   
-![](pic/08Log/offset-index.png)
+![](../../../../../../../pictures/kafka/08Log/offset-index.png)
 
 每条索引为8个字节长度的数据，一分为二   
 1.relativeOffset ：前4个字节为相对偏移量，相对指相对于baseOffset，如分段文件的baseOffset为10，relativeOffset为5，则对应消息的实际offset=15   
@@ -105,7 +105,7 @@
 ```
 $ka/bin/kafka-dump-log.sh --files ./00000000000000000000.index
 ```
-![](pic/08Log/offset-index-log.png)
+![](../../../../../../../pictures/kafka/08Log/offset-index-log.png)
 
 注：在一条日志也未生成日志的情况下，该命令查询报NoSuchElementException
 - 索引的使用   
@@ -113,13 +113,13 @@ kafka通过偏移量索引获取上图偏移量为420的消息的物理地址的
 1.先通过baseOffset找到日志所在的分片，如上图找到的即为baseOffset=0的分片的索引文件，即00000000000000000000.index
   - Kafka 的每个日志对象中使用了ConcurrentSkipListMap来保存各个日志分段，每个日志分段的baseOffset作为key，这样可以根据指定偏移量来快速定位到消息所在的日志分段。   
   
-    ![](pic/08Log/ConcurrentSkipListMap-LogSegment.png)    
+    ![](../../../../../../../pictures/kafka/08Log/ConcurrentSkipListMap-LogSegment.png)    
 2.计算相对偏移量，相对偏移量 = 偏移量 - 基础偏移量 = 420 - 0 = 420   
 3.在00000000000000000000.index中寻找索引项相对偏移量不大于420的最大索引记录，如图为offset=375的项   
 4.offset=375的索引对应的baseOffset=0，通过kafka中跳跃表结构ConcurrentSkipListMap可获得baseOffset=0对应的日志分片   
 5.在日志分片中通过position查找目标消息    
 - 索引与日志分片的映射     
-![](pic/08Log/offset-index-map.png)
+![](../../../../../../../pictures/kafka/08Log/offset-index-map.png)
 ### 5.时间戳索引
 - 索引结构   
 同偏移量索引类似，由两部分组成，共12字节：   
@@ -191,7 +191,7 @@ log.retention.hours默认168，即7天
 3.用户模式内容复制到内核模式下的SocketBuffer   
 4.将内核模式下SocketBuffer数据复制到网卡设备，发送到远端   
 上述步骤中的2、3步骤为冗余复制，降低性能   
-![](pic/08Log/common_copy.png)
+![](../../../../../../../pictures/kafka/08Log/common_copy.png)
 - 零拷贝模式   
 零拷贝模式直接在内核模式把磁盘中的数据传输给Socket，减少了向用户模式传输的过程，提升了性能   
 ![](pic/08Log/zero_copy.png)

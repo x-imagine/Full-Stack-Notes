@@ -1,20 +1,20 @@
 # 一、工程构建
 - maven工程，pom.xml引入依赖
-```
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-            <version>2.1.2.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-clients</artifactId>
-            <version>2.6.0</version>
-        </dependency>
+```xml
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter</artifactId>
+	<version>2.1.2.RELEASE</version>
+</dependency>
+<dependency>
+	<groupId>org.apache.kafka</groupId>
+	<artifactId>kafka-clients</artifactId>
+	<version>2.6.0</version>
+</dependency>
 ```
 - logback-test.xml   
 过滤掉过多日志
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="false">
     <!-- definition of appender STDOUT -->
@@ -37,7 +37,7 @@ Kafka管理客户端API，实现topic、broker等各类对象的管理。
 
 ## 2.获得AdminClient
 对kafka任何对象的管理，均需要首先获取AdminClient。
-```
+```java
     /**
      * 获取AdminClient
      * @return AdminClient
@@ -54,7 +54,7 @@ Kafka管理客户端API，实现topic、broker等各类对象的管理。
 
 ## 3.Topic操作
 ### 创建
-```
+```java
     public static void createTopic(String topicName) {
         AdminClient adminClient = AdminClientFactory.getAdminClient();
         short partitionsNum = 1;
@@ -65,6 +65,7 @@ Kafka管理客户端API，实现topic、broker等各类对象的管理。
     }
 ```
 ### 查看
+```java
     public static void topicList() throws ExecutionException, InterruptedException {
         AdminClient adminClient = AdminClientFactory.getAdminClient();
         // 包含一个KafkaFuture，用于异步发送请求之后等待操作结果，支持链式调用以及其他异步编程模型
@@ -83,7 +84,9 @@ Kafka管理客户端API，实现topic、broker等各类对象的管理。
             LOGGER.info("--------------   topic list   -------------------- " + topic);
         });
     }
+```
 ### 删除
+```java
     public static void delTopic(String topicName) throws ExecutionException, InterruptedException {
         AdminClient adminClient = AdminClientFactory.getAdminClient();
         adminClient.deleteTopics(Arrays.asList(topicName));
@@ -93,3 +96,4 @@ Kafka管理客户端API，实现topic、broker等各类对象的管理。
             LOGGER.info("--------------   topic name   -------------------- :" + s);
         });
     }
+```

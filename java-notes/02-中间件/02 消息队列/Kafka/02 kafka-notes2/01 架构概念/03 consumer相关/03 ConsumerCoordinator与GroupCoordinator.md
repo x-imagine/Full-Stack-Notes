@@ -5,7 +5,7 @@
 
 旧版的消费者客户端是使用ZooKeeper的监听器（Watcher）来实现这些功能的。
 
-![ZooKeeper中与消费有关的路径节点](./pic/ConsumerCoordinator与GroupCoordinator_images/kafka-old-client-zk.png)
+![ZooKeeper中与消费有关的路径节点](../../../../../../../pictures/kafka/ConsumerCoordinator与GroupCoordinator_images/kafka-old-client-zk.png)
 
 这种严重依赖于ZooKeeper集群的做法还有两个比较严重的问题:
 - 羊群效应（Herd Effect）：所谓的羊群效应是指ZooKeeper中一个被监听的节点变化，大量的 Watcher 通知被发送到客户端，导致在通知期间的其他操作延迟，也有可能发生类似死锁的情况。

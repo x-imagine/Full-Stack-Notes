@@ -17,7 +17,7 @@ Kafka安装目录中bin下的脚本执行。
 ```
 kafka-topics.sh --create --topic topic-a --bootstrap-server 192.168.137.88:9092
 ```
-![](pic/99Commands/create-topic.png)
+![](../../../../../../pictures/kafka/99Commands/create-topic.png)
 - 定制款A：指定分区、副本创建topic，覆盖部分默认参数
 ```
 kafka-topics.sh --bootstrap-server 192.168.137.88:9092 --create --topic topic-name  --partitions 4 --replication-factor 2
@@ -39,12 +39,12 @@ kafka-topics.sh --bootstrap-server 192.168.137.88:9092 --create --topic topic-na
 ```
 kafka-topics.sh --describe --topic topic-a --bootstrap-server 192.168.137.88:9092
 ```
-![](pic/99Commands/desc-topic.png)
+![](../../../../../../pictures/kafka/99Commands/desc-topic.png)
 - 获取topic列表
 ```
 kafka-topics.sh --list --bootstrap-server 192.168.137.88:9092
 ```
-![](pic/99Commands/listTopic.png)
+![](../../../../../../pictures/kafka/99Commands/listTopic.png)
 - 查看覆盖配置的topic
 ```
 kafka-topics.sh --describe --bootstrap-server 192.168.137.88:9092 --topics-with-overrides
@@ -59,7 +59,7 @@ kafka-topics.sh --delete --topic topic-1,topic-2 --bootstrap-server 192.168.137.
 ```
 kafka-topics.sh --alter --partitions 4 --topic topic-a --bootstrap-server 192.168.137.88:9092
 ```
-![](pic/99Commands/increase-partition.png)   
+![](../../../../../../pictures/kafka/99Commands/increase-partition.png)   
 注：不能改小，只能改大
 
 - 修改topic配置
@@ -195,13 +195,13 @@ entity-type topic
  kafka-configs.sh --bootstrap-server 192.168.137.88:9092 --alter --entity-type topics --entity-name topic-b --add-config 'max.message.bytes=50000000,flush.ms=100000'
 ```
 修改配置于增加配置一致，直接修改属性值即可
-![](pic/99Commands/kafka-configs-topics.png) 
+![](../../../../../../pictures/kafka/99Commands/kafka-configs-topics.png) 
 
 ### 2.删除配置
 ```
  kafka-configs.sh --bootstrap-server 192.168.137.88:9092 --alter --entity-type topics --entity-name topic-b --delete-config 'max.message.bytes,flush.ms'
 ```
-![](pic/99Commands/kafka-configs-topics-delete.png) 
+![](../../../../../../pictures/kafka/99Commands/kafka-configs-topics-delete.png) 
 
 ### 3.查看配置
 ```
@@ -215,7 +215,7 @@ entity-type topic
 kafka-configs.sh --bootstrap-server 192.168.137.88:9092 --entity-type brokers --entity-name 1 --alter --add-config --follower.replication.thrott
 led.rate=1024,leader.replication.throttled.rate=1024
 ```
-![](pic/07Partitions/config-throttle-broker.png) 
+![](../../../../../../pictures/kafka/07Partitions/config-throttle-broker.png) 
 
 - --follower.replication.throttled.rate=1024,leader.replication.throttled.rate=1024 增加内容及参数值
 
@@ -233,13 +233,13 @@ Producer参数说明：
 ```
 kafka-console-producer.sh --topic topic-a --bootstrap-server 192.168.137.88:9092
 ```
-![](pic/99Commands/producerByTopic.png)
+![](../../../../../../pictures/kafka/99Commands/producerByTopic.png)
 
 ### 2.带key数据
 ```
 kafka-console-producer.sh --topic topic-a --bootstrap-server 192.168.137.88:9092 --property parse.key=true
 ```
-![](pic/99Commands/producerByTopicWithKey.png)   
+![](../../../../../../pictures/kafka/99Commands/producerByTopicWithKey.png)   
 注：key与value之间需要用tab分隔
 
 ## kafka-console-consumer.sh
@@ -248,38 +248,38 @@ kafka-console-producer.sh --topic topic-a --bootstrap-server 192.168.137.88:9092
 ```
 kafka-console-consumer.sh --topic topic-a --bootstrap-server 192.168.137.88:9092
 ```
-![](pic/99Commands/consumerByTopic.png)
+![](../../../../../../pictures/kafka/99Commands/consumerByTopic.png)
 ### 2.指定起点消费
 从头开始消费
 ```
 kafka-console-consumer.sh --bootstrap-server 192.168.137.88:9092 --topic topic-b --from-beginning 
 ```
-![](pic/99Commands/consumer-from-beginning.png)   
+![](../../../../../../pictures/kafka/99Commands/consumer-from-beginning.png)   
 从指定位移消费
 ```
 kafka-console-consumer.sh --bootstrap-server 192.168.137.88:9092 --topic topic-b --partition 0 --offset 2
 ```
-![](pic/99Commands/consumer-from-offset.png)   
+![](../../../../../../pictures/kafka/99Commands/consumer-from-offset.png)   
 注：必须指定分区，否则offset无法确定是哪个分区，同时，offset可以指定为earliest、latest或无符号数
 
 ### 3.指定partition消费
 ```
 kafka-console-consumer.sh --topic topic-a --partition 0 --bootstrap-server 192.168.137.88:9092
 ```
-![](pic/99Commands/consumerByPartition.png)
+![](../../../../../../pictures/kafka/99Commands/consumerByPartition.png)
 
 ## kafka-consumer-groups.sh
 ### 1.查看消费组列表
 ```
 kafka-consumer-groups.sh --bootstrap-server 192.168.137.88:9092 --list
 ```
-![](pic/99Commands/consumer-group-list.png)
+![](../../../../../../pictures/kafka/99Commands/consumer-group-list.png)
 
 ### 2.查看消费组详细
 ```
 kafka-consumer-groups.sh --bootstrap-server 192.168.137.88:9092 --describe --group test_consumer_group_id
 ```
-![](pic/99Commands/consumer-groups-describe.png)
+![](../../../../../../pictures/kafka/99Commands/consumer-groups-describe.png)
 - GROUP：组名
 - TOPIC：订阅的主题
 - PARTITION：对应的分区编号
@@ -295,11 +295,11 @@ kafka-consumer-groups.sh --bootstrap-server 192.168.137.88:9092 --describe --gro
 kafka-consumer-groups.sh --bootstrap-server 192.168.137.88:9092 --describe --group test_consumer_group_id --state
 ```
 - stable：有消费者成员   
-![](pic/99Commands/consumer-groups-state.png)
+![](../../../../../../pictures/kafka/99Commands/consumer-groups-state.png)
   
 
 - empty：无消费者成员   
-![](pic/99Commands/consumer-groups-state-empty.png)   
+![](../../../../../../pictures/kafka/99Commands/consumer-groups-state-empty.png)   
 其他状态：
 - prepareingRebalance：准备再平衡
 - completeRebalance：完成再平衡
@@ -309,14 +309,14 @@ kafka-consumer-groups.sh --bootstrap-server 192.168.137.88:9092 --describe --gro
 ```
 kafka-consumer-groups.sh --bootstrap-server 192.168.137.88:9092 --describe --group test_consumer_group_id --members --verbose
 ```
-![](pic/99Commands/consumer-group-members.png)
+![](../../../../../../pictures/kafka/99Commands/consumer-group-members.png)
 
 ### 5.删除消费组
 删除只可处理未在运行的消费组，否则报错
 ```
 kafka-consumer-groups.sh --bootstrap-server 192.168.137.88:9092 --delete --group test_consumer_group_id
 ```
-![](pic/99Commands/consumer-group-delete.png)
+![](../../../../../../pictures/kafka/99Commands/consumer-group-delete.png)
 
 ## kafka-producer-perf-test.sh
 producer性能测试，可通过自带的脚本kafka-producer-perf-test.sh，主要参数：
@@ -329,9 +329,9 @@ producer性能测试，可通过自带的脚本kafka-producer-perf-test.sh，主
 kafka-producer-perf-test.sh --producer-props bootstrap.servers=192.168.137.88:9092 --topic topic-b --num-records 1000 --throughput 10 --record-size 10
 ```
 执行后可获得传输速率，最大延迟、最小延迟：
-![](pic/99Commands/kafka-producer-perf-test.png)
+![](../../../../../../pictures/kafka/99Commands/kafka-producer-perf-test.png)
 实际发出的测试消息：
-![](pic/99Commands/kafka-producer-perf-test-result.png)
+![](../../../../../../pictures/kafka/99Commands/kafka-producer-perf-test-result.png)
 
 ## kafka-consumer-perf-test.sh
 consumer性能测试，可通过自带脚本kafka-consumer-perf-test.sh，主要参数：
@@ -345,11 +345,11 @@ consumer性能测试，可通过自带脚本kafka-consumer-perf-test.sh，主要
 kafka-consumer-perf-test.sh --bootstrap-server 192.168.137.88:9092 --topic topic-b --messages 10000 --fetch-size 100 --threads 1
 ```
 执行后获得消费消息的开始时间、结束时间、记录大小、流量速率（M/S）、记录速率（记录数/S）等信息：
-![](pic/99Commands/kafka-consumer-perf-test-result.png)
+![](../../../../../../pictures/kafka/99Commands/kafka-consumer-perf-test-result.png)
 注：测试前要确保主题中的记录数足够，当性能测试拉取的消息总数，大于主题中的消息总数，则会超时，因为迟迟没有拉取到目标数量的消息
-![](pic/99Commands/kafka-consumer-perf-test-timeout.png)
+![](../../../../../../pictures/kafka/99Commands/kafka-consumer-perf-test-timeout.png)
 实际测试根据不同的参数修改，测试不同的参数运行情况
-![](pic/99Commands/kafka-consumer-perf-test-para.png)
+![](../../../../../../pictures/kafka/99Commands/kafka-consumer-perf-test-para.png)
 
 ## kafka-delete-records.sh
 删除消息脚本，需要通过json文件提供删除的topic 和 partition
@@ -371,10 +371,10 @@ kafka-consumer-perf-test.sh --bootstrap-server 192.168.137.88:9092 --topic topic
 ```
  kafka-delete-records.sh --bootstrap-server 192.168.137.88:9092 --offset-json-file delete-records.json
 ```
-![](pic/99Commands/delete-record-json.png)
-![](pic/99Commands/delete-records.png)    
+![](../../../../../../pictures/kafka/99Commands/delete-record-json.png)
+![](../../../../../../pictures/kafka/99Commands/delete-records.png)    
 注：json脚本中的offset是从清除后的low_watermark，即保留到哪个offset，而不是从哪个offset删；如果是1000，执行脚本后，该分区的offset就从1000起，1000之前的消息都删除   
-![](pic/99Commands/delete-records-result.png)
+![](../../../../../../pictures/kafka/99Commands/delete-records-result.png)
 
 ## kafka-dump-log.sh
 工具有助于解析日志文件并将其内容转储到控制台，对于调试看似损坏的日志分段或索引分段等信息
@@ -382,19 +382,19 @@ kafka-consumer-perf-test.sh --bootstrap-server 192.168.137.88:9092 --topic topic
 ```
 $KAFKA_HOME/bin/kafka-dump-log.sh --files ./00000000000000000000.log
 ```
-![](pic/99Commands/dump-log.png)
+![](../../../../../../pictures/kafka/99Commands/dump-log.png)
 - 查看位移索引数据   
 无法直接打开索引文件直观查看索引，通过kafka-dump-log.sh可对偏移量索引的稀疏索引进行查看
 ```
 $ka/bin/kafka-dump-log.sh --files ./00000000000000000000.index
 ```
-![](pic/99Commands/dump-log-index.png)
+![](../../../../../../pictures/kafka/99Commands/dump-log-index.png)
 
 - 查看时间戳索引
 ```
 $ka/bin/kafka-dump-log.sh --files ./00000000000000000000.timeindex
 ```
-![](pic/99Commands/dump-log-timeindex.png)
+![](../../../../../../pictures/kafka/99Commands/dump-log-timeindex.png)
 
 ## kafka-log-dirs.sh
 通过脚本查看主题中分区日志文件位置、size、offset延迟情况等信息
@@ -405,7 +405,7 @@ $ka/bin/kafka-dump-log.sh --files ./00000000000000000000.timeindex
 ```
 kafka-log-dirs.sh --bootstrap-server 192.168.137.88:9092 --broker-list 0 --describe --topic-list topic-b
 ```
-![](pic/99Commands/log-dirs-broker.png)
+![](../../../../../../pictures/kafka/99Commands/log-dirs-broker.png)
 格式化后
 ```json
 {
@@ -436,7 +436,7 @@ kafka-log-dirs.sh --bootstrap-server 192.168.137.88:9092 --broker-list 0 --descr
 }
 ```
 不指定broker，则显式所有节点的分区情况
-![](pic/99Commands/log-dirs-topic.png)
+![](../../../../../../pictures/kafka/99Commands/log-dirs-topic.png)
 ****
 ## kafka-replica-verification.sh
 验证分区内leader副本与非follower副本的同步延迟情况，这个命令有点类似ping命令，就是在规定的频度内不停检查同步延迟情况
@@ -447,7 +447,7 @@ kafka-log-dirs.sh --bootstrap-server 192.168.137.88:9092 --broker-list 0 --descr
 kafka-replica-verification.sh --broker-list 192.168.137.88:9092
 kafka-replica-verification.sh --broker-list 192.168.137.88:9092 --topic-white-list topic-b --report-interval-ms 1000
 ```
-![](pic/99Commands/replica-varification.png)    
+![](../../../../../../pictures/kafka/99Commands/replica-varification.png)    
 如图，在有消息生产时，部分分区是在时间点上是有一些同步延迟的记录的，有哪个分区被监控到就打印哪个，所以不用关注为什么打印的是一个分区，其他的怎么没监控，因为监控的是among的后的74个partition
 
 ## kafka-verifiable-consumer.sh
@@ -461,7 +461,7 @@ kafka-replica-verification.sh --broker-list 192.168.137.88:9092 --topic-white-li
 kafka-verifiable-consumer.sh --bootstrap-server 192.168.137.88:9092 --topic topic-b --max-messages 1000 --group-id group
 kafka-verifiable-consumer.sh --bootstrap-server 192.168.137.88:9092 --topic topic-b --group-id group
 ```
-![](pic/99Commands/verifiable-consumer.png)
+![](../../../../../../pictures/kafka/99Commands/verifiable-consumer.png)
 脚本启动后，如果没有max-messages没有设置，则一直守候，主题中有消息即时消费   
 返回的消费结果格式
 ```json
@@ -500,7 +500,7 @@ kafka-verifiable-consumer.sh --bootstrap-server 192.168.137.88:9092 --topic topi
 ```
 kafka-verifiable-producer.sh --bootstrap-server 192.168.137.88:9092 --topic topic-b --max-messages 10  --throughput 10
 ```
-![](pic/99Commands/verifiable-producer.png)
+![](../../../../../../pictures/kafka/99Commands/verifiable-producer.png)
 响应格式：
 ```json
 {
@@ -520,7 +520,7 @@ kafka-verifiable-producer.sh --bootstrap-server 192.168.137.88:9092 --topic topi
 ```
 kafka-run-class.sh kafka.tools.GetOffsetShell
 ```
-![](pic/99Commands/kafka-run-class-GetOffsetShell.png)    
+![](../../../../../../pictures/kafka/99Commands/kafka-run-class-GetOffsetShell.png)    
 根据说明使用参数获取topic最大位移
 ```
 kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list 192.168.137.88:9092 --topic topic-b --time -1
@@ -531,7 +531,7 @@ kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list 192.168.137.88:9092 
 kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list 192.168.137.88:9092 --topic topic-b --time -2
 ```
 - -–time：-1 表示获取最大位移，-2 表示获取当前最早位移；分区当前的消息总数 = –time-1 - –time-2   
-![](pic/99Commands/kafka-run-class-offset.png)
+![](../../../../../../pictures/kafka/99Commands/kafka-run-class-offset.png)
 
 ## kafka-mirror-maker.sh
 kafka集群复制工具
